@@ -1,0 +1,308 @@
+---
+title: 'Stats 250: Lab 1 Resources'
+author: "Instructional Team"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
+    theme: lumen
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Learning Objectives
+1. Review the functions covered in Lab 0
+2. Learn about using external packages
+3. Introduction to ggplot
+4. Create a bar chart
+5. Create a histogram
+
+
+***
+
+
+## Coding Examples
+
+### Lab 0 Review
+
+In Lab 0, you learned about RStudio and started writing R code. You learned how to use R as a calculator, read in a data set, and compute some basic numerical summaries. Let's go through a quick refresher! 
+
+
+#### Knitting
+
+At any time, we can knit the document to an HTML file (by clicking on the "Knit" button above this document). Knitting creates an easier-to-read, well-formatted report. 
+
+
+#### Code Chunks
+
+A code chunk looks like this:
+
+```{r example1}
+34 - 13
+```
+
+Clicking on the green play button will run the code chunk. A code chunk...
+
+- must start and end with three backticks (```)
+- must have a *unique* name (the code chunk above is named "example1")
+
+Forgetting to include the opening/closing backticks or forgetting to give your code chunk a unique name is the cause of most errors we see. Be careful when copying and pasting code -- only take the code portion of the code chunk (and not the code chunk name or backticks).  
+
+Note: any necessary code chunks will already be created for you! If you wish to add your own code chunk, you can do so by clicking the small green square above this document and selecting R. If you give your code chunk a name, be sure that it has a unique name. Duplicating code chunk names will return an error upon knitting. 
+
+
+#### Reading and Previewing Data
+
+Finally, we learned how to read in data. By itself, the `read.csv()` function reads in a data set. By using the left facing arrow (`<-`), we can assign a name to this data set. Let's read in the "penguins.csv" data set and store it as "penguins". 
+
+```{r readData}
+penguins <- read.csv("penguins.csv")
+```
+
+We can view the data set by clicking on the name of the data set in our Environment (top right window). Alternatively, we can preview the data set by using the `head()` function. 
+
+```{r previewData}
+head(penguins)
+```
+
+
+#### Summarizing Data
+
+Finally, we learned some ways to summarize quantitative and categorical variables. Some functions that help us summarize quantitative data are as follows: 
+
+```{r mean_example}
+mean(penguins$body_mass_g)
+```
+
+```{r median_example}
+median(penguins$body_mass_g)
+```
+
+```{r standardDeviation_example}
+sd(penguins$body_mass_g)
+```
+
+```{r minAndMax_example}
+min(penguins$body_mass_g)
+max(penguins$body_mass_g)
+```
+
+```{r quantile_example}
+quantile(penguins$body_mass_g)
+```
+
+```{r IQR_example}
+IQR(penguins$body_mass_g)
+```
+
+```{r summary_example}
+summary(penguins$body_mass_g)
+```
+
+And we can summarize categorical data using a table (formally called a one-way frequency table) using the following code:
+
+```{r table_example}
+table(penguins$species)
+```
+
+The important thing to remember with all of these functions is the structure of the code:
+
+`dataset$variable`  
+
+What questions do you have about the information covered in Lab 0? Now is a great time to ask - we are here to help! 
+
+
+
+### External Packages
+
+All of the functions we have used so far are "built into" R. One powerful benefit of R is that users can create their own functions, store them in a package, and make it available for others to use. This is not unlike installing new apps on your cellular phone beyond the ones installed by the manufacturer. One external package that we'll use frequently in this course is called `ggplot2` (more information on this package in the next section). 
+
+To load this package, we need to run the following code chunk:
+
+```{r loadPackages}
+library(ggplot2)
+```
+
+Note: running the above code chunk will not return any output
+
+**IMPORTANT:** Without loading the package, you will not be able to successfully run any of the code chunks below. Loading packages is typically done near the top of a document so that any code dependent on the package falls below that code chunk. If you try to use a function from a package before loading it in, the function will not work. 
+
+Okay! Let's learn more about the ggplot2 package. 
+
+
+
+### ggplot
+
+One of the most important skills in statistics/data analysis is the ability to create powerful and informative visualizations. One of the most utilized packages for data visualization is the ggplot2 package. 
+
+Note: the name of the package itself is called ggplot2, but a plot created using this package is referred to as a ggplot
+
+To create a ggplot, there are three main components:
+
+1. the data set 
+2. the aesthetics (variable(s) of interest as well as size, shape, color, etc.)
+3. the geometric object (desired plot - histogram, scatterplot, etc.)
+
+With these components, we can create extremely powerful visuals. 
+
+
+
+### Bar Charts
+
+Let's start by creating a bar chart - a great plot for visualizing a *categorical* variable. 
+
+The `ggplot()` function can be tricky and overwhelming so we're going build up our code from scratch. Suppose we wanted to create a bar chart displaying how many penguins of each species we've collected in our data set. The first component needed is the name of the **data set**.
+
+```{r barChart_data}
+ggplot(data = penguins)
+```
+
+This code doesn't do much, but it does create a blank canvas for us to work with. The next step is to add the variable of interest using the `aes` (**aesthetics**) argument. Note that all of the following code is contained *within* the `ggplot()` function. *Be very careful with parentheses!*
+
+```{r barChart_aesthetics}
+ggplot(data = penguins, aes(x = species))
+```
+
+Some labels have been added to the x-axis, but our plot is still blank...
+
+The last piece of the puzzle is to specify the **geometric object**. For a bar chart, `geom_bar()` is used. This is added *outside* of the ``ggplot()` function (and its parentheses) from above and is separated with a `+`.  
+
+*Again, be very careful with parentheses!*
+
+```{r barChart_geometricObject}
+ggplot(data = penguins, aes(x = species)) + geom_bar()
+```
+
+We finally have a plot! It looks good, not great...but we'll learn how to clean it up with titles, labels, colors, etc. later on. For now, focus on learning the three main components of the `ggplot()` function. 
+
+Remember...**data, aesthetics, geometric object**!
+
+**Demo #1**: Create a bar chart for the number of penguins that live on each island (using the variable `island`).
+
+```{r demo1, error = T}
+# Replace this comment with your code
+
+```
+
+**THINK-PAIR-SHARE #1:** Is it appropriate to say that the distribution of islands is skewed to the right? Why or why not? 
+
+Note: you are not required to answer these questions in your R document, but it may be helpful later on if you do. Feel free to jot notes down! 
+
+
+
+### Histograms
+
+Next, we'll create a histogram - a great plot for visualizing a *quantitative* variable. 
+
+Suppose we wish to create a histogram for the variable body mass from the penguins data set. Again, we'll build up our code little by little. First we have our data set. 
+
+```{r histogram_data}
+ggplot(data = penguins)
+```
+
+Then, we add our variable of interest through the aesthetics argument. 
+
+```{r histogram_aesthetics}
+ggplot(data = penguins, aes(x = body_mass_g))
+```
+
+And finally, we complete our code with the geometric object -- which in this case will be `geom_histogram()`. Have we mentioned that you should be careful with parentheses?
+
+```{r histogram_geometricObject}
+ggplot(data = penguins, aes(x = body_mass_g)) + geom_histogram()
+```
+
+Wonderful! Now let's learn how to clean up our figure a little. 
+
+First, you may have noticed the warning message above the plot. With `geom_histogram()`, we can specify the *number of bins* using the `bins` argument. By default, ggplot uses 30 bins. Sometimes this is a good number, but depending on your data you may need to use more bins or fewer bins for a cleaner and more detailed plot. This argument gets included inside the `geom_histogram()` code. Note that it can be helpful to space out your code on separate lines, as shown below. 
+
+```{r histogram_bins}
+ggplot(data = penguins, aes(x = body_mass_g)) + 
+  
+  geom_histogram(bins = 25)
+```
+
+By specifying the bins, we no longer receive the warning message from the previous plot. Feel free to play around with the number of bins in the code chunk above to see how the plot changes.
+
+Next, let's play around with some colors using the `color` and `fill` arguments. With `geom_histogram()`, the `color` argument references the outline of the bins and `fill` references the inner area of the bins. This code will be included *inside* of the `geom_histogram()` parentheses.  
+
+```{r histogram_color}
+ggplot(data = penguins, aes(x = body_mass_g)) + 
+  
+  geom_histogram(bins = 25,
+                 color = "black",
+                 fill = "grey")
+```
+
+Finally, let's see how to add a title and labels. To do this, we include another section of code called `labs` and specify the labels through various arguments. 
+
+Note that a `+` was added after the `geom_histogram()` parentheses and that each label argument is separated by a comma (at the end of each line)!
+
+```{r histogram_final}
+ggplot(data = penguins, aes(x = body_mass_g)) + 
+  
+  geom_histogram(bins = 25,
+                 color = "black",
+                 fill = "grey") +
+  
+  labs(title = "Histogram of Penguin Body Mass",
+       subtitle = "by Stats 250 Instructional Team",
+       x = "Body Mass (in grams)",
+       y = "Frequency")
+```
+
+The above code may look fairly busy to you - and that's okay! You'll feel more comfortable with functions like this as we get more practice. For now, try it out on your own using the demo below. 
+
+**Demo #2**: Create a histogram for the penguin flipper lengths. We recommend copying, pasting, and editing the code from the above code chunk -- but you're also welcome to try typing it from scratch. Be sure to update the title and labels. Feel free to play around with the number of bins and various colors!
+
+```{r demo2, error = T}
+# Replace this comment with your code
+
+```
+
+*Think About It:* You should notice that the distribution for penguin flipper lengths is bimodal. What might cause this distribution to have two peaks? Think about the other variables in the data set. What graph could help us check this idea?
+
+
+### Bar Charts (Part 2)
+
+Circling back to our bar chart from earlier, we can add a title, labels, and colors using the same code! Note: for the `fill` argument, we could add a different color for each of the three species (as seen in the first example) or we could use the same color for all three species (as seen in the second example). 
+
+```{r barChart_final1}
+ggplot(data = penguins, aes(x = species)) + 
+  
+  geom_bar(color = "black",
+           fill = c("darkorange1", "mediumorchid2", "darkcyan")) +
+  
+  labs(title = "Bar Chart of Penguin Species",
+       subtitle = "by Stats 250 Instructional Team",
+       x = "Species",
+       y = "Frequency")
+```
+
+```{r barChart_final2}
+ggplot(data = penguins, aes(x = species)) + 
+  
+  geom_bar(color = "black",
+           fill = "grey") +
+  
+  labs(title = "Bar Chart of Penguin Species",
+       subtitle = "by Stats 250 Instructional Team",
+       x = "Species",
+       y = "Frequency")
+```
+
+The `ggplot()` function can get confusing with the different arguments, features, commas, and parentheses - please don't hesitate to ask questions!
+
+We will learn how to summarize and visualize bivariate data (two variables) in Lab 2!
+
+Now, click on the file titled `lab01_assignment.Rmd` in the bottom right window to open up the assignment for today.
+
+
+
+
+
