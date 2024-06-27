@@ -1,0 +1,150 @@
+---
+title: "Stats 250 Lab 1 Assignment"
+author: "Instructional Team"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### Instructions
+
+Complete the Lab Exercises and Dive Deeper questions below. There will usually be seven Lab Exercises (graded out of 2 points each) and two Dive Deeper questions (graded out of 3 points each) - all of them graded for *correctness*. For this first assignment, all questions will be graded for completeness. Upon completion, follow the submission instructions at the bottom of this document. 
+
+***
+
+### Background
+
+For this lab, we will continue working with the `penguins` data set. As a reminder, the `penguins` data set contains information on 333 penguins collected from three islands in the Palmer Archipelago in Antarctica. See the References section at the bottom of the lab resources document for more information.
+
+![](images/palmerpenguins.jpg){width=500px}
+
+Use the following code chunk to read in the data set. 
+
+```{r readpenguins}
+penguins <- read.csv("penguins.csv")
+```
+
+***
+
+### Lab Exercises
+
+This section of the lab assignment will test your knowledge of the functions learned throughout the lab resources document. This section will involve seven questions that are graded for correctness (2 points each). The questions may require an answer in the form of code, text, or both! For this first lab, the questions will be graded for completeness. 
+
+> **1.** In the code chunk below, use R as a calculator and multiply 250 by your lab's section number. 
+
+```{r exercise1}
+# Replace this text with your code!
+
+```
+
+
+
+> **2.** How many rows are in the `penguins` data set? What does each row represent? How many columns are in the data set? What does each column represent? 
+
+*Number of Rows:* Replace this text with the number of rows.
+
+*Each row represents a(n):* Replace this text with your answer.
+
+*Number of Columns:* Replace this text with the number of columns.
+
+*Each column represents a(n):* Replace this text with your answer.
+
+
+
+> **3.** Which of the variables in `penguins` are *quantitative*? List the names of the quantitative variables below. 
+
+*The quantitative variables are:* Replace this text with your answer.
+
+
+
+> **4.** What is the longest bill length found in the data set? In other words, what is the maximum value for the variable `bill_length_mm`? 
+
+```{r exercise4}
+# Replace this text with your code!
+
+```
+
+*The maximum bill length found in the data set is:* Replace this text with your answer.
+
+
+
+> **5.** What are the values that correspond to the location of the middle 50% of flipper lengths found in the data set? In other words, what are the 1st quartile and 3rd quartile for the variable `flipper_length_mm`? What is this span (or spread) known as?
+
+```{r exercise5}
+# Replace this text with your code!
+
+```
+
+*Q1:* Replace this text with the value of the 1st quartile.
+
+*Q3:* Replace this text with the value of the 3rd quartile.
+
+*This span is known as the:* Replace this text with your answer. 
+
+
+
+> **6.** Create a table for the `island` variable and report the number of penguins below. How many of the observed penguins live on Dream island? 
+
+```{r exercise6}
+# Replace this text with your code!
+
+```
+
+*Number of penguins living on Dream island:* Replace this text with your answer.
+
+
+
+> **7.** One of the most common errors is copying and pasting extra backticks before or after a code chunk. What is the other common error that was discussed in the lab resources document? 
+
+*The other common error is:* Replace this text with your answer.
+
+
+***
+
+
+## Dive Deeper
+
+This section of the lab assignment will have you "dive deeper" into the analysis completed above. This section will involve two questions that are also graded for correctness (3 points each). For this lab, these questions will be graded for completeness.  
+
+> **1.** After this lab, how do you feel about using R? Do you have any major concerns moving forward with Stats 250?
+
+*Answer:* Replace this text with your answer (1-2 sentences).
+
+
+
+> **2.** How do you think statistics will help you in your major or future career?
+
+*Answer:* Replace this text with your answer (1-2 sentences).
+
+
+***
+
+
+## Submission Instructions
+
+Carefully follow the instructions below to properly submit your completed work.
+
+1. At the top of the document, change the `author` field to your name (in quotes!). **Do not change any of the other fields (title, date, output) at the top of the document.**
+
+2. When you have finished the lab, click the **Knit** button one last time.
+
+3. Check the box next to the `lab01_assignment.pdf` file in the Files window (the bottom right window): 
+
+4. Click More > Export. Note: instead of "More", you may see a gear icon instead. You can also resize the Files window to find the "More" button.
+
+5. **Do not change the file name (lab01_assignment.pdf)** Click Download and save the file to your computer.
+
+6. Head to Gradescope and navigate to the corresponding assignment. 
+
+7. Click "Submit PDF" and upload your saved `lab01_assignment.pdf` file. 
+
+8. Assign pages for your answers and click "Submit" in the bottom right corner. Note: you can resubmit as many times as needed until the posted deadline. 
+
+9. Give yourself a high five - you have completed Lab 1!
+
+
+
